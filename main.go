@@ -12,16 +12,12 @@ import (
 
 func main(){
 	url := user_input()
-	fmt.Println("cauight here?")
-	fmt.Println(len(url))
 	if  len(url) == 0 {
 		fmt.Println("URL is empty. Exiting...")
 		os.Exit(1);
 	}
 	go get_website_info(url)
-	
 	time.Sleep(2 * time.Second)
-	fmt.Println("end?")
 }
 
 
