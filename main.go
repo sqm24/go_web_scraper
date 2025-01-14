@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"log"
 	"time"
+	"strings"
 )
 
 func main(){
@@ -42,11 +43,15 @@ func user_input() string {
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Println("Enter the website you want to parse: ")
 
-	input, err := reader.ReadString('\n')
+	rawURL, err := reader.ReadString('\n')
 	if err != nil {
 		fmt.Println("Error reading input: ", err)
 		return "ERROR IDIOT"
 	}
 
-	return input
+	cleanURL := strings.ReplaceAll(rawURL, "\n", "")
+	cleanURL = strings.ReplaceAll(cleanURL, "\r", "")
+	cleanURL = strings.ReplaceAll(cleanURL, "\t", "")
+
+	return cleanURL
 }
