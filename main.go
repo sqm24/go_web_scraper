@@ -9,6 +9,7 @@ import (
 	"log"
 	"time"
 	"strings"
+	"regexp"
 )
 
 func main(){
@@ -35,7 +36,13 @@ func get_website_info(url string){
 		log.Fatal(err)
 	}
 
-	fmt.Println(string(html))
+	var re = regexp.MustCompile(`href="(https?://[^"]+)"`)
+	html_str := string(html)
+	matches := re.FindAllStringSubmatch(html_str, -1)
+
+	for _, match := range matches {
+		fmt.Println("Found link:", match[1])
+	}
 }
 
 // asks user what URL you want to test
