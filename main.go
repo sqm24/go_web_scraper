@@ -42,6 +42,8 @@ func get_website_info(url string){
 
 	for _, match := range matches {
 		fmt.Println("Found link:", match[1])
+		//go get_website_info(match[1])
+		//time.Sleep(2*time.Second)
 	}
 }
 
